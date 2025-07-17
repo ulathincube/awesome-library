@@ -6,13 +6,53 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Reddit+Sans:ital,wght@0,200..900;1,200..900&display=swap"
       rel="stylesheet"
     />
-
     <title>Library</title>
     <link rel="stylesheet" href="styles.css" />
     <script defer src="script.js"></script>
   </head>
-  <body></body>
+  <body>
+    <section>
+      <table class="books">
+        <caption>
+          Most Loved Books
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Author</th>
+            <th scope="col">Title</th>
+            <th scope="col">Pages</th>
+            <th scope="col">Year</th>
+          </tr>
+        </thead>
+        <tbody class="table-body"></tbody>
+      </table>
+      <section class="add-books">
+        <button class="add-book">Add Book</button>
+        <form class="book-form hidden">
+          <div class="book-row">
+            <label for="title">Title</label>
+            <input id="title" type="text" />
+          </div>
+          <div class="book-row">
+            <label for="author">Author</label>
+            <input id="author" type="text" />
+          </div>
+          <div class="book-row">
+            <label for="pages">Pages</label>
+            <input id="pages" type="text" />
+          </div>
+          <div class="book-row">
+            <label for="year">Year</label>
+            <input id="year" type="text" />
+          </div>
+          <div class="book-row">
+            <button class="submit">Submit</button>
+          </div>
+        </form>
+      </section>
+    </section>
+  </body>
 </html>

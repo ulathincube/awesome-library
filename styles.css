@@ -74,11 +74,33 @@ h6 {
   isolation: isolate;
 }
 
+table,
+td,
+th,
+thead {
+  font-weight: 400;
+  text-align: left;
+}
+
 html {
   font-size: 62.5%;
-  font-family: Inter, system-ui, sans-serif;
+  font-family: 'Reddit Sans', system-ui, sans-serif;
 }
 
 body {
   font-size: 1.9rem;
+}
+
+.heading {
+  font-size: 2.5rem;
+  text-align: center;
+  font-weight: 400;
+}
+
+.books {
+  margin-bottom: 5rem;
+}
+
+.hidden {
+  visibility: hidden;
 }
