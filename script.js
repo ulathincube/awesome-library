@@ -171,8 +171,6 @@ function getFormData() {
   const year = yearInput.value;
   const isRead = isReadInput.checked;
 
-  console.log({ author, title, pages, year, isRead });
-
   createBook({ author, title, pages, year, isRead });
 }
 
@@ -184,21 +182,17 @@ function handleSubmitBook(event) {
   clearBooks();
   getFormData();
   displayBooks(books);
-
-  console.log(tableRows);
 }
 
 function handleChangeState(event) {
   const tableRowElement = event.target.parentNode.parentNode;
 
-  console.log(tableRowElement);
   const id = tableRowElement.dataset.id;
 
   findAndUpdateBook(id);
 }
 
 function handleTableRowClick(event) {
-  console.log('click');
   const clickedElement = event.target;
   const clickedElementParent = event.currentTarget;
 
