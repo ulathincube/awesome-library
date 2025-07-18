@@ -10,7 +10,7 @@ const pagesInput = addBookForm.querySelector('#pages');
 const yearInput = addBookForm.querySelector('#year');
 const isReadInput = addBookForm.querySelector('#is-read');
 
-let tableRows, deleteButtons;
+let tableRows, deleteButtons, changeReadStateButtons;
 
 const books = [];
 
@@ -65,11 +65,15 @@ function displayBooks(books) {
     const titleCell = document.createElement('td');
     const pagesCell = document.createElement('td');
     const yearCell = document.createElement('td');
+    const isReadCell = document.createElement('td');
     const editsCell = document.createElement('td');
     const button = document.createElement('button');
+    const changeReadState = document.createElement('button');
 
     button.classList.add('delete-button');
     button.textContent = 'Delete';
+    changeReadState.textContent = 'Change Read Status';
+    editsCell.appendChild(changeReadState);
     editsCell.appendChild(button);
 
     const { author, title, pages, isRead, year, id } = book;
@@ -77,14 +81,18 @@ function displayBooks(books) {
     titleCell.textContent = title;
     yearCell.textContent = year;
     pagesCell.textContent = pages;
+    isReadCell.textContent = isRead;
 
     tableRow.setAttribute('class', 'table-row');
     tableRow.setAttribute('data-id', id);
+
+    changeReadState.setAttribute('class', 'read-state');
 
     tableRow.appendChild(authorCell);
     tableRow.appendChild(titleCell);
     tableRow.appendChild(pagesCell);
     tableRow.appendChild(yearCell);
+    tableRow.appendChild(isReadCell);
     tableRow.appendChild(editsCell);
 
     tableBody.appendChild(tableRow);
@@ -92,10 +100,15 @@ function displayBooks(books) {
 
   tableRows = tableBody.querySelectorAll('.table-row');
   deleteButtons = tableBody.querySelectorAll('.delete-button');
+  changeReadStateButtons = tableBody.querySelectorAll('.read-state');
 
   tableRows.forEach(tableRow => {
     tableRow.addEventListener('click', handleTableRowClick);
   });
+
+  changeReadStateButtons.forEach(changeReadStateButton =>
+    changeReadStateButton.addEventListener('click', handleChangeState)
+  );
 }
 
 displayBooks(books);
@@ -127,10 +140,22 @@ function findAndDeleteBook(id) {
   if (indexOfBook !== -1) {
     // const booksCopy = [...books];
     books.splice(indexOfBook, 1);
-    console.log('Book deleted');
+    alert('Book deleted!');
   } else {
-    console.log('No book found!');
+    alert('Not found!');
   }
+}
+
+function findAndUpdateBook(id) {
+  const book = books.find(book => book.id === id);
+
+  if (!book) {
+    return;
+  }
+
+  book.isRead = !book.isRead;
+  clearBooks();
+  displayBooks(books);
 }
 
 // helper funcs
@@ -159,6 +184,15 @@ function handleSubmitBook(event) {
   console.log(tableRows);
 }
 
+function handleChangeState(event) {
+  const tableRowElement = event.target.parentNode.parentNode;
+
+  console.log(tableRowElement);
+  const id = tableRowElement.dataset.id;
+
+  findAndUpdateBook(id);
+}
+
 function handleTableRowClick(event) {
   console.log('click');
   const clickedElement = event.target;
@@ -172,13 +206,9 @@ function handleTableRowClick(event) {
 
   const id = clickedElementParent.dataset.id;
 
-  console.dir(tableRows);
-
   findAndDeleteBook(id);
   clearBooks();
   displayBooks(books);
-
-  console.dir(tableRows);
 }
 
 addBookButton.addEventListener('click', handleAddButtonClick);
