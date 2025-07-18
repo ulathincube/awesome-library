@@ -22,6 +22,10 @@ function Book(author, title, pages, isRead, year) {
   this.year = year;
 }
 
+Book.prototype.changeReadState = function () {
+  this.isRead = !this.isRead;
+};
+
 function createBook(book) {
   const { author, title, pages, isRead, year } = book;
 
@@ -153,7 +157,7 @@ function findAndUpdateBook(id) {
     return;
   }
 
-  book.isRead = !book.isRead;
+  book.changeReadState();
   clearBooks();
   displayBooks(books);
 }
