@@ -14,17 +14,19 @@ let tableRows, deleteButtons, changeReadStateButtons;
 
 const books = [];
 
-function Book(author, title, pages, isRead, year) {
-  this.author = author;
-  this.title = title;
-  this.pages = pages;
-  this.isRead = isRead;
-  this.year = year;
-}
+class Book {
+  constructor(author, title, pages, isRead, year) {
+    this.author = author;
+    this.title = title;
+    this.pages = pages;
+    this.isRead = isRead;
+    this.year = year;
+  }
 
-Book.prototype.changeReadState = function () {
-  this.isRead = !this.isRead;
-};
+  changeReadState() {
+    this.isRead = !this.isRead;
+  }
+}
 
 function createBook(book) {
   const { author, title, pages, isRead, year } = book;
