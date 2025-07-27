@@ -10,6 +10,9 @@ const pagesInput = addBookForm.querySelector('#pages');
 const yearInput = addBookForm.querySelector('#year');
 const isReadInput = addBookForm.querySelector('#is-read');
 
+const errorBox = document.querySelector('.errors');
+const error = document.querySelector('.error');
+
 let tableRows, deleteButtons, changeReadStateButtons;
 
 const books = [];
@@ -178,6 +181,8 @@ function getFormData() {
 
 function handleSubmitBook(event) {
   event.preventDefault();
+
+  authorInput.reportValidity();
   addBookButton.classList.remove('hidden');
   addBookForm.classList.toggle('hidden');
 
@@ -212,4 +217,16 @@ function handleTableRowClick(event) {
 }
 
 addBookButton.addEventListener('click', handleAddButtonClick);
-submitBookButton.addEventListener('click', handleSubmitBook);
+addBookForm.addEventListener('submit', handleSubmitBook);
+
+authorInput.addEventListener('input', event => {
+  authorInput.setCustomValidity('');
+
+  if (authorInput.validity.tooShort) {
+    authorInput.setCustomValidity('Please provide a valid author');
+  } else {
+    authorInput.setCustomValidity('');
+  }
+
+  console.log(authorInput.validationMessage);
+});

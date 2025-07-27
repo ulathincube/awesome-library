@@ -39,29 +39,38 @@
         <form class="book-form hidden">
           <div class="book-row">
             <label for="author">Author</label>
-            <input name="author" id="author" type="text" />
+            <input
+              minlength="5"
+              required
+              name="author"
+              id="author"
+              type="text"
+            />
           </div>
           <div class="book-row">
             <label for="title">Title</label>
-            <input name="title" id="title" type="text" />
+            <input minlength="6" required name="title" id="title" type="text" />
           </div>
 
           <div class="book-row">
             <label for="pages">Pages</label>
-            <input name="pages" id="pages" type="text" />
+            <input required name="pages" id="pages" type="text" />
           </div>
           <div class="book-row">
             <label for="year">Year</label>
-            <input name="year" id="year" type="text" />
+            <input required name="year" id="year" type="text" />
           </div>
           <div class="book-row">
             <label for="is-read">Read</label>
-            <input id="is-read" type="checkbox" name="isRead" />
+            <input required id="is-read" type="checkbox" name="isRead" />
           </div>
           <div class="book-row">
-            <button class="submit">Submit</button>
+            <button class="submit" type="submit">Submit</button>
           </div>
         </form>
+        <div class="errors">
+          <p class="error"></p>
+        </div>
       </section>
     </section>
   </body>
